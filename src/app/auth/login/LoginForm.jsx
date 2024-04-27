@@ -37,8 +37,8 @@ const Page = () => {
         console.log(res?.error || "Unknown error Occurred");
         setErrorMessage(res?.error || "Try again later or Contact us");
         setTimeout(() => {
-          setErrorMessage(""); 
-          }, 3000);
+          setErrorMessage("");
+        }, 3000);
         setLoading(false);
       } else {
         setDisplayMessage("Taking you to your Dashboard...");
@@ -50,7 +50,7 @@ const Page = () => {
       console.log(err || "Unknown error Occurred");
       setErrorMessage(err || "Try again later or Contact us");
       setTimeout(() => {
-      setErrorMessage(""); 
+        setErrorMessage("");
       }, 3000);
 
       setLoading(false);
@@ -168,13 +168,13 @@ const Page = () => {
               </button>
             </div>
           </form>
-          {/* <div className="text-center pt-8 text-white">
+          <div className="text-center pt-8 text-white">
             {"Don't have an account ?"}
             <Link href="/auth/register" className="text-blue-300 font-bold">
               {" "}
               Register
             </Link>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

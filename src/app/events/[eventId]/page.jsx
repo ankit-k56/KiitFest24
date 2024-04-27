@@ -6,21 +6,21 @@ import { redirect } from "next/navigation";
 import React from "react";
 import { IoCaretBack } from "react-icons/io5";
 import RegisterButton from "./RegisterButton";
- 
+
 const EventPage = async ({ params }) => {
   const eventId = params.eventId;
- 
+
   const events = await db.event.findUnique({
     where: {
       id: eventId,
     },
   });
- 
+
   const session = await getServerAuthSession();
- 
+
   if (session) {
     const userId = session.user.id || null;
- 
+
     const registeredEventData = await db.eventRegisteredUser.findUnique({
       where: {
         userId_eventId: {
@@ -29,7 +29,7 @@ const EventPage = async ({ params }) => {
         },
       },
     });
- 
+
     return (
       <div className="bg-[url('/Assets/bgevent.png')] w-full  min-h-screen bg-no-repeat bg-cover ">
         <Link href="/dashboard">
@@ -50,10 +50,10 @@ const EventPage = async ({ params }) => {
                   <div className="flex">
                     <p>Check guidelines:</p>
                     <a target="_blank" href={events.rulebookUrl}>
-                    <button className="bg-blue-700 px-4 py-2 rounded-md uppercase text-sm tracking-wider hover:bg-blue-600 transition-colors duration-200">
-                      Guidelines
-                    </button>
-                                    </a>
+                      <button className="bg-blue-700 px-4 py-2 rounded-md uppercase text-sm tracking-wider hover:bg-blue-600 transition-colors duration-200">
+                        Guidelines
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -70,12 +70,12 @@ const EventPage = async ({ params }) => {
                 </div>
               </div>
             )}
-            Registration for events have closed... Thank you for showing interest.
-            {/* <RegisterButton
+            {/* Registration for events have closed... Thank you for showing interest. */}
+            <RegisterButton
               isRegistered={registeredEventData ? true : false}
               eventId={eventId}
               userId={userId}
-            /> */}
+            />
           </section>
         </div>
       </div>
@@ -108,10 +108,10 @@ const EventPage = async ({ params }) => {
                   <div className="flex">
                     <p className="mr-2">Check Guidelines: </p>
                     <a target="_blank" href={events.rulebookUrl}>
-                  <button className="bg-blue-700 px-4 py-2 rounded-md uppercase text-sm tracking-wider hover:bg-blue-600 transition-colors duration-200">
-                  Guidelines
-                  </button>
-                </a>
+                      <button className="bg-blue-700 px-4 py-2 rounded-md uppercase text-sm tracking-wider hover:bg-blue-600 transition-colors duration-200">
+                        Guidelines
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -139,5 +139,5 @@ const EventPage = async ({ params }) => {
     );
   }
 };
- 
+
 export default EventPage;
